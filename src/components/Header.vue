@@ -1,7 +1,8 @@
 <template>
 	<header>
 		<div class="spacex-logo">
-			<img src="../assets/spacex_logo_small.png" />
+			<router-link to="/"><img src="../assets/spacex_logo_small.png" /></router-link>
+			
 		</div>
 		<div class="header-sub-heading">
 			<p>The Unofficial SpaceX Database</p>

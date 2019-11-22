@@ -32,6 +32,20 @@ export default {
 	padding: 0;
 	margin: 0;
 }
+
+a{
+  text-decoration: none;
+}
+a {color:black;}         /* Unvisited link  */
+a:visited {color:black;} /* Visited link    */
+a:hover {color:gray;}   /* Mouse over link */
+a:active {color:black;} 
+
+.whole-header{
+	background-color: white;
+	/* background-color: aqua;*/
+}
+
 body {
 	font-family: "Montserrat", sans-serif;
 }

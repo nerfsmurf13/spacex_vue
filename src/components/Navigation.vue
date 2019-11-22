@@ -36,9 +36,10 @@ export default {
 <style scoped>
 ul {
 	display: flex;
+  justify-content: space-evenly;
 }
 
 .navbar li {
-	flex-grow: 1;
+
 }
 </style>
