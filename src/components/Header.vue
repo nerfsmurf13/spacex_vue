@@ -1,24 +1,33 @@
 <template>
-<header>
-    <img src="../assets/spacex_logo.png" alt="" srcset="">
-    <h1>Unofficial SpaceX Database</h1>
-</header>
+	<header>
+		<div class="spacex-logo">
+			<img src="../assets/spacex_logo_small.png" />
+		</div>
+		<div class="header-sub-heading">
+			<p>The Unofficial SpaceX Database</p>
+		</div>
+	</header>
 </template>
 
 <script>
 export default {
-  name: 'Header',
-  data () {
-    return {
-      msg: 'Welcome to Your Vue.js App'
-    }
-  }
-}
+	name: "Header",
+	data() {
+		return {
+			msg: "Welcome to Your Vue.js App"
+		};
+	}
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-img{
-    width:50vw;
+header .spacex-logo,
+.header-sub-heading {
+	display: flex;
+	justify-content: center;
+}
+img {
+	height: 30px;
 }
 </style>
