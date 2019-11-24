@@ -33,8 +33,6 @@ export default {
 			type: Boolean,
 			default: false
 		}
-
-		//rocketId: String
 	}
 };
 </script>
@@ -46,12 +44,8 @@ export default {
 	display: flex;
 	flex-flow: column;
 	flex-grow: 1;
-	/* min-width: 100px;
-  max-width: 300px; */
 	text-align: center;
 	align-items: center;
-
-	/* border-radius: 1rem; */
 	padding: 0.5rem;
 	margin: 1rem;
 	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);

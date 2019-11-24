@@ -38,6 +38,13 @@ export default {
 	flex-flow: row;
 }
 
+.sticky {
+	position: -webkit-sticky; /* Safari */
+	position: sticky;
+	top: 0;
+	align-self: flex-start;
+}
+
 .sidebar {
 	/* border: 1px black solid; */
 	width: 300px;

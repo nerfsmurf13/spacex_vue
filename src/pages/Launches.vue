@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<div class="row">
-			<div class="sidebar">
+			<div class="sidebar sticky">
 				<div class="category">
 					<h2>Launches</h2>
 				</div>
@@ -11,92 +11,57 @@
 				<div class="filter">
 					<!-- <p>Date Range</p> -->
 					<div class="rocket-used">
-						<fieldset class="sidebar-title">
-							<!-- <p class="sidebar-title">Rocket Used</p>
-							<label @mouseup.left="queryBuilder('')" class="radio-pair">
-								Any
-								<input class="radio-input" type="radio" name="rocket_id" value />
-								<span class="checkmark"></span>
-							</label>
-							<label @mouseup.left="queryBuilder('rocket_id=falcon1&')" class="radio-pair">
-								Falcon 1
-								<input class="radio-input" type="radio" name="rocket_id" value="falcon1" />
-								<span class="checkmark"></span>
-							</label>
-							<label @mouseup.left="queryBuilder('rocket_id=falcon9&')" class="radio-pair">
-								Falcon 9
-								<input class="radio-input" type="radio" name="rocket_id" value="falcon9" />
-								<span class="checkmark"></span>
-							</label>
-							<label @mouseup.left="queryBuilder('rocket_id=falconheavy&')" class="radio-pair">
-								Falcon Heavy
-								<input class="radio-input" type="radio" name="rocket_id" value="falconheavy" />
-								<span class="checkmark"></span>
-							</label>
-							<label @mouseup.left="queryBuilder('rocket_id=starship&')" class="radio-pair">
-								Starship
-								<input class="radio-input" type="radio" name="rocket_id" value="starship" />
-								<span class="checkmark"></span>
-							</label>-->
-							<p class="sidebar-title">Rocket Used</p>
-							<button
-								v-bind:class="{ 'btn-active': filterRocket==''}"
-								@mouseup.left="filterShip($event.target.value)"
-								value
-							>All</button>
-							<button
-								v-bind:class="{ 'btn-active': filterRocket=='falcon1'}"
-								@mouseup.left="filterShip($event.target.value)"
-								value="falcon1"
-							>Falcon 1</button>
-							<button
-								v-bind:class="{ 'btn-active': filterRocket=='falcon9'}"
-								@mouseup.left="filterShip($event.target.value)"
-								value="falcon9"
-							>Falcon 9</button>
-							<button
-								v-bind:class="{ 'btn-active': filterRocket=='falconheavy'}"
-								@mouseup.left="filterShip($event.target.value)"
-								value="falconheavy"
-							>Falcon Heavy</button>
-							<button
-								v-bind:class="{ 'btn-active': filterRocket=='starship'}"
-								@mouseup.left="filterShip($event.target.value)"
-								value="starship"
-							>Starship</button>
-						</fieldset>
+						<p class="sidebar-title">Rocket Used</p>
+						<button
+							v-bind:class="{ 'btn-active': filterRocket==''}"
+							@mouseup.left="filterShip($event.target.value)"
+							value
+						>All</button>
+						<button
+							v-bind:class="{ 'btn-active': filterRocket=='falcon1'}"
+							@mouseup.left="filterShip($event.target.value)"
+							value="falcon1"
+						>Falcon 1</button>
+						<button
+							v-bind:class="{ 'btn-active': filterRocket=='falcon9'}"
+							@mouseup.left="filterShip($event.target.value)"
+							value="falcon9"
+						>Falcon 9</button>
+						<button
+							v-bind:class="{ 'btn-active': filterRocket=='falconheavy'}"
+							@mouseup.left="filterShip($event.target.value)"
+							value="falconheavy"
+						>Falcon Heavy</button>
+						<button
+							v-bind:class="{ 'btn-active': filterRocket=='starship'}"
+							@mouseup.left="filterShip($event.target.value)"
+							value="starship"
+						>Starship</button>
 					</div>
-
 					<div class="successful-launch">
-						<fieldset>
-							<p class="sidebar-title">Succesful Launch</p>
-							<label class="radio-pair">
-								Any
-								<input class="radio-input" type="radio" name="successful-launch" value />
-								<span class="checkmark"></span>
-							</label>
-							<label @mouseup.left="queryBuilder('launch_success=true&')" class="radio-pair">
-								Yes
-								<input class="radio-input" type="radio" name="successful-launch" value="falcon1" />
-								<span class="checkmark"></span>
-							</label>
-							<label @mouseup.left="queryBuilder('launch_success=false&')" class="radio-pair">
-								No
-								<input class="radio-input" type="radio" name="successful-launch" value="falcon9" />
-								<span class="checkmark"></span>
-							</label>
-						</fieldset>
+						<p class="sidebar-title">Succesful Launch</p>
+						<button
+							v-bind:class="{ 'btn-active': filterSuccess==''}"
+							@mouseup.left="filterLaunchGood($event.target.value)"
+							value
+						>All</button>
+						<button
+							v-bind:class="{ 'btn-active': filterSuccess=='true'}"
+							@mouseup.left="filterLaunchGood($event.target.value)"
+							value="true"
+						>Yes</button>
+						<button
+							v-bind:class="{ 'btn-active': filterSuccess=='false'}"
+							@mouseup.left="filterLaunchGood($event.target.value)"
+							value="false"
+						>No</button>
 					</div>
-					<!-- <p>Landing Succesful</p>
-					<p>Landing Vehicle</p>-->
-					<!-- <p>customer</p> -->
-					<!-- <p>nationality</p>
-					<p>manufacturer</p>
-					<p>payload_type</p>
-					<p>orbit</p>-->
 					<p>Total: {{launches.length}}</p>
-					<p>Apply Filter</p>
-					<p>Clear Filter</p>
+					<button
+						@mouseup.left="filterShip($event.target.value);filterLaunchGood($event.target.value)"
+						class="btn-always"
+						value
+					>Clear Filter</button>
 				</div>
 			</div>
 
@@ -131,8 +96,9 @@ export default {
 		return {
 			launches: [],
 			filterRocket: "",
-			filterSuccess: true,
-			qString: "",
+			filterSuccess: "",
+			qRocket: "",
+			qLaunchGood: "",
 			url: "https://api.spacexdata.com/v3/launches"
 		};
 	},
@@ -142,60 +108,35 @@ export default {
 
 	methods: {
 		fetchLaunches() {
-			let baseURI = this.url + "?" + this.qString;
+			let baseURI = this.url + "?" + this.qRocket + this.qLaunchGood;
 			this.$http.get(baseURI).then(result => {
 				this.launches = result.data;
 			});
 		},
 		filterShip(e) {
-			//console.log(e);
 			let rocketId = e;
 			this.filterRocket = e;
 			if (!this.filterRocket === rocketId) {
 				this.filterRocket = rocketId;
-
-				// console.log("removed " + rocketId + " at index");
-			} else {
-				//this.filterRocket = "";
 			}
 			this.rocketQueryStringer();
-			// if (!this.filterRocketArray.includes(rocketId)) {
-			// 	this.filterRocketArray.push(rocketId);
-			// 	console.log("added " + rocketId);
-			// 	this.rocketQueryStringer();
-			// 	return;
-			//this.queryStringer();
-			// }
 		},
-		// refreshLaunches(q) {
-		// 	this.q = q || "";
-		// 	this.fetchLaunches(q);
-		// },
-
 		rocketQueryStringer() {
-			//this.qString = "";
-			//let prefix = ;
-			this.qString = "rocket_id=" + this.filterRocket + "&";
+			this.qRocket = "rocket_id=" + this.filterRocket + "&";
+			this.fetchLaunches();
+		},
+		filterLaunchGood(e) {
+			let launchSuccess = e;
+			this.filterSuccess = e;
+			if (!this.filterSuccess === launchSuccess) {
+				this.filterSuccess = launchSuccess;
+			}
+			this.successQueryStringer();
+		},
+		successQueryStringer() {
+			this.qLaunchGood = "launch_success=" + this.filterSuccess + "&";
 			this.fetchLaunches();
 		}
-		// this.q.forEach(e => {
-		// 	this.qString = this.qString + e;
-		// });
-		// 	this.fetchLaunches();
-		// },
-
-		// queryBuilder(input) {
-		// 	let str = input;
-		// 	if (this.q.includes(str)) {
-		// 		let ind = this.q.indexOf(str);
-		// 		this.q.splice(ind, 1);
-		// 		console.log("removed " + str + " at index" + ind);
-		// 	} else {
-		// 		this.q.push(str);
-		// 		console.log("added " + str);
-		// 		this.queryStringer();
-		// 	}
-		// }
 	}
 };
 </script>
@@ -208,6 +149,25 @@ export default {
 
 .sidebar {
 	font-size: 1.3rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.filter .rocket-used {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+.filter .successful-launch {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+.filter {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 
 .category {
@@ -233,17 +193,13 @@ export default {
 	width: 100%;
 }
 
-.fill {
-	box-sizing: border-box;
-}
-
 .search-bar input[type="text"] {
-	font-size: 2rem;
+	font-size: 1.3rem;
 	width: 150px;
 	border: 0;
 	border-radius: 10px;
-	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 	text-align: center;
+	border: 2px solid #d1d1d1;
 }
 
 button {
@@ -254,9 +210,18 @@ button {
 	border-radius: 10px;
 	width: 150px;
 	margin: 0.5rem 0;
+	border: 2px solid white;
+	transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+button:hover {
+	border: 2px solid #2196f3;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 }
 .btn-active {
 	background-color: #2196f3;
 	color: white;
+}
+.btn-always {
+	border: 2px solid #2196f3;
 }
 </style>
