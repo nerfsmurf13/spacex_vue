@@ -36,10 +36,9 @@ export default {
 <style scoped>
 ul {
 	display: flex;
-  justify-content: space-evenly;
+	justify-content: space-evenly;
 }
 
 .navbar li {
-
 }
 </style>
