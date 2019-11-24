@@ -6,7 +6,7 @@
 					<h2>Launches</h2>
 				</div>
 				<div class="search-bar">
-					<input type="text" />
+					<input type="text" placeholder="Search" />
 				</div>
 				<div class="filter">
 					<!-- <p>Date Range</p> -->
@@ -229,7 +229,7 @@ export default {
 .launch-container {
 	display: flex;
 	flex-flow: row wrap;
-	justify-content: space-evenly;
+	justify-content: space-around;
 	width: 100%;
 }
 
@@ -237,70 +237,13 @@ export default {
 	box-sizing: border-box;
 }
 
-/* EXPERIEMTNATL */
-.radio-pair {
-	display: block;
-	position: relative;
-	padding-left: 35px;
-	margin-bottom: 12px;
-	cursor: pointer;
-
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
-}
-
-/* Hide the browser's default radio button */
-.radio-pair input {
-	position: absolute;
-	opacity: 0;
-	cursor: pointer;
-	height: 0;
-	width: 0;
-}
-
-/* Create a custom radio button */
-.checkmark {
-	position: absolute;
-	top: 0;
-	left: 0;
-	height: 25px;
-	width: 25px;
-	background-color: #eee;
-	border-radius: 50%;
-}
-
-/* On mouse-over, add a grey background color */
-.radio-pair:hover input ~ .checkmark {
-	background-color: #ccc;
-}
-
-/* When the radio button is checked, add a blue background */
-.radio-pair input:checked ~ .checkmark {
-	background-color: #2196f3;
-}
-
-/* Create the indicator (the dot/circle - hidden when not checked) */
-.checkmark:after {
-	content: "";
-	position: absolute;
-	display: none;
-}
-
-/* Show the indicator (dot/circle) when checked */
-.radio-pair input:checked ~ .checkmark:after {
-	display: block;
-}
-
-/* Style the indicator (dot/circle) */
-.radio-pair .checkmark:after {
-	top: 9px;
-	left: 9px;
-	width: 8px;
-	height: 8px;
-	border-radius: 50%;
-	background: white;
+.search-bar input[type="text"] {
+	font-size: 2rem;
+	width: 150px;
+	border: 0;
+	border-radius: 10px;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+	text-align: center;
 }
 
 button {

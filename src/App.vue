@@ -39,7 +39,7 @@ export default {
 }
 
 .sidebar {
-	border: 1px black solid;
+	/* border: 1px black solid; */
 	width: 300px;
 	padding: 1rem;
 	background-color: #f4f4f4;

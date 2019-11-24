@@ -45,6 +45,7 @@ export default {
 	border-left: solid 5px green;
 	display: flex;
 	flex-flow: column;
+	flex-grow: 1;
 	/* min-width: 100px;
   max-width: 300px; */
 	text-align: center;
