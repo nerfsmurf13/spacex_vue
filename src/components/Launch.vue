@@ -35,7 +35,8 @@ export default {
 	data() {
 		return {
 			launchData: [],
-			launchId: ""
+			launchId: "",
+			searchBox: ""
 		};
 	},
 	created() {

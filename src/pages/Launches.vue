@@ -5,9 +5,9 @@
 				<div class="category">
 					<h2>Launches</h2>
 				</div>
-				<div class="search-bar">
-					<input type="text" placeholder="Search" />
-				</div>
+				<form v-on:submit="fetchLaunches" class="search-bar">
+					<input v-on:keyup="fetchLaunches" v-model="search" type="text" placeholder="Search" />
+				</form>
 				<div class="filter">
 					<!-- <p>Date Range</p> -->
 					<div class="rocket-used">
@@ -67,7 +67,7 @@
 
 			<div class="launch-container">
 				<!-- FILTER SIDEBAR NEEDED -->
-				<div v-for="launch in launches">
+				<div v-for="(launch,index) in launches" :key="index" :launches="launches">
 					<router-link :to="{ path: 'launch/'+launch.flight_number}">
 						<launch-card
 							:missionName="launch.mission_name"
@@ -99,9 +99,11 @@ export default {
 			filterSuccess: "",
 			qRocket: "",
 			qLaunchGood: "",
+			search: "",
 			url: "https://api.spacexdata.com/v3/launches"
 		};
 	},
+
 	mounted: function() {
 		this.fetchLaunches();
 	},
@@ -111,8 +113,19 @@ export default {
 			let baseURI = this.url + "?" + this.qRocket + this.qLaunchGood;
 			this.$http.get(baseURI).then(result => {
 				this.launches = result.data;
+				let filteredDataBySearch = [];
+				if (this.search !== "") {
+					filteredDataBySearch = this.launches.filter(
+						obj =>
+							obj.mission_name
+								.toLowerCase()
+								.indexOf(this.search.toLowerCase()) >= 0
+					);
+					this.launches = filteredDataBySearch;
+				}
 			});
 		},
+
 		filterShip(e) {
 			let rocketId = e;
 			this.filterRocket = e;
