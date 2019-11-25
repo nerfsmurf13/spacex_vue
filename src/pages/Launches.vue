@@ -218,11 +218,11 @@ export default {
 button {
 	background-color: white;
 	border: 0;
-	padding: 0.5rem 0.5rem;
+	padding: 0.3rem 0.5rem;
 	font-size: 1.3rem;
 	border-radius: 10px;
 	width: 150px;
-	margin: 0.5rem 0;
+	margin: 0.3rem 0;
 	border: 2px solid white;
 	transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
