@@ -20,10 +20,6 @@
           flex-flow: row;
 }
 
-* .container {
-  background-color: #f4f4f4;
-}
-
 * .wrap {
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
@@ -82,6 +78,7 @@
 }
 
 * a {
+  cursor: pointer;
   text-decoration: none;
   -webkit-transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
@@ -101,6 +98,10 @@
 
 * a:active {
   color: black;
+}
+
+* button {
+  cursor: pointer;
 }
 
 header {
@@ -143,10 +144,20 @@ nav a:hover {
   color: #2196f3;
 }
 
-.full-container {
+.container {
+  background-color: #f4f4f4;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.full-container {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-flow: column;
@@ -154,11 +165,12 @@ nav a:hover {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  width: 100%;
+  max-width: 800px;
 }
 
 .wide-card {
-  max-width: 800px;
+  max-width: 100%;
+  padding: 0 auto;
   overflow: hidden;
   background-color: white;
   display: -webkit-box;
@@ -175,6 +187,8 @@ nav a:hover {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  -ms-flex-preferred-size: 100%;
+      flex-basis: 100%;
   margin: 0.5rem;
   -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
           box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
@@ -183,11 +197,6 @@ nav a:hover {
 }
 
 .wide-card .top {
-  width: 800px;
-  -webkit-box-flex: 1;
-      -ms-flex-positive: 1;
-          flex-grow: 1;
-  padding: auto;
   padding-top: .5rem;
 }
 
