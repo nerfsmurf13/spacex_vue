@@ -1,9 +1,12 @@
 <template>
 	<div id="app">
-		<div class="whole-header">
+		<header>
 			<app-header />
 			<app-navigation></app-navigation>
-		</div>
+		</header>
+		<div
+			class="message-to-viewer"
+		>I started this project in mid November 2019 and although not complete, I am still using this as a portfolio item! Pardon the construction!</div>
 		<div class="container">
 			<router-view />
 		</div>
@@ -26,74 +29,4 @@ export default {
 	}
 };
 </script>
-
-<style>
-* {
-	padding: 0;
-	margin: 0;
-}
-
-.row {
-	display: flex;
-	flex-flow: row;
-}
-
-.sticky {
-	position: -webkit-sticky; /* Safari */
-	position: sticky;
-	top: 0;
-	align-self: flex-start;
-}
-
-.sidebar {
-	/* border: 1px black solid; */
-	width: 300px;
-	padding: 1rem;
-	background-color: #f4f4f4;
-}
-.sidebar .category {
-}
-
-.navbar {
-	padding: 1rem;
-	font-size: 1.2rem;
-}
-
-a {
-	text-decoration: none;
-	transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-}
-a {
-	color: black;
-} /* Unvisited link  */
-a:visited {
-	color: black;
-} /* Visited link    */
-a:hover {
-	color: gray;
-} /* Mouse over link */
-a:active {
-	color: black;
-}
-
-.whole-header {
-	background-color: white;
-	/* background-color: aqua;*/
-}
-
-fieldset {
-	border: 0;
-}
-
-body {
-	font-family: "Montserrat", sans-serif;
-}
-.container {
-	background-color: #f4f4f4;
-}
-ul {
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
-}
-</style>
+<style src="./styles/style.css"></style>

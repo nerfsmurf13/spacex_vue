@@ -1,44 +1,50 @@
 <template>
-	<div class="navbar">
+	<nav class="navbar">
 		<ul>
-			<li>
-				<router-link to="/capsules">History</router-link>
+			<li @click="currentPage" :class="{ 'active': page==('/history')}">
+				<router-link to="/history">History</router-link>
 			</li>
-			<li>
-				<router-link to="/launches">Launches</router-link>
+			<li @click="currentPage" :class="{ 'active': page==('/launches')}">
+				<router-link @click="currentPage" to="/launches">Launches</router-link>
 			</li>
-			<li>
-				<router-link to="/rockets">Missions</router-link>
+			<li @click="currentPage" :class="{ 'active': page==('/missions')}">
+				<router-link @click="currentPage" to="/missions">Missions</router-link>
 			</li>
-			<li>
-				<router-link to="/rockets">Rockets</router-link>
+			<li @click="currentPage" :class="{ 'active': page==('/rockets')}">
+				<router-link @click="currentPage" to="/rockets">Rockets</router-link>
 			</li>
-			<li>
-				<router-link to="/rockets">Launch Pads</router-link>
+			<li @click="currentPage" :class="{ 'active': page==('/launch-pads')}">
+				<router-link @click="currentPage" to="/launch-pads">Launch Pads</router-link>
 			</li>
-			<li>
-				<router-link to="/rockets">Landing Pads</router-link>
+			<li @click="currentPage" :class="{ 'active': page==('/landing-pads')}">
+				<router-link @click="currentPage" to="/landing-pads">Landing Pads</router-link>
 			</li>
-			<li>
-				<router-link to="/rockets">Ships</router-link>
+			<li @click="currentPage" :class="{ 'active': page==('/ships')}">
+				<router-link @click="currentPage" to="/ships">Ships</router-link>
 			</li>
 		</ul>
-	</div>
+	</nav>
 </template>
 
 <script>
 export default {
-	name: "Navigation"
+	name: "Navigation",
+	data() {
+		return {
+			page: ""
+		};
+	},
+	mounted: function() {
+		this.currentPage();
+	},
+	methods: {
+		currentPage() {
+			this.page = this.$route.path;
+			return this.$route.path;
+		}
+	}
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-ul {
-	display: flex;
-	justify-content: space-evenly;
-}
-
-.navbar li {
-}
-</style>
+<style src="../styles/style.css"></style>

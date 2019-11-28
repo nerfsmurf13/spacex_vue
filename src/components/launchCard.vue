@@ -1,8 +1,12 @@
 <template>
 	<div :class="{'failed-launch':!launchSuccess,'future-launch':launched }" class="launch-card">
-		<h3>{{ missionName }}</h3>
-		<p>Launch #: {{ flightNumber }}</p>
-		<p>{{ launchYear }}</p>
+		<div class="content">
+			<p>
+				{{ flightNumber }}:
+				<span class="name">{{ missionName }}</span>
+			</p>
+			<p>{{ launchYear }}</p>
+		</div>
 	</div>
 </template>
 <script>
@@ -38,22 +42,31 @@ export default {
 </script>
 <style scoped>
 .launch-card {
+	width: 200px;
+	min-height: 73px;
 	overflow: hidden;
 	background-color: white;
 	border-left: solid 5px green;
 	display: flex;
-	flex-flow: column;
-	flex-grow: 1;
+	justify-content: center;
+	/* flex-grow: 1; */
 	text-align: center;
 	align-items: center;
 	padding: 0.5rem;
-	margin: 1rem;
+	margin: 0.5rem;
 	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 	transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
 .launch-card:hover {
 	box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+.content {
+}
+
+.name {
+	font-weight: 600;
 }
 
 .failed-launch {

@@ -1,0 +1,297 @@
+//Globals
+$primary-color: #2196f3;
+
+// $primary-color: #2196f3;
+
+* {
+  padding: 0;
+  margin: 0;
+
+
+  html,
+  body {
+    font-family: "Montserrat", sans-serif;
+    height: 100%;
+  }
+
+  .row {
+    width: 100%;
+    display: flex;
+    flex-flow: row;
+  }
+
+
+  .container {
+    background-color: #f4f4f4;
+  }
+
+  .wrap {
+    flex-wrap: wrap;
+  }
+
+  .space-even {
+    justify-content: space-evenly;
+  }
+
+  .center {
+    justify-content: center;
+  }
+
+  .row-space-evenly {
+    width: 100%;
+    display: flex;
+    flex-flow: row;
+    justify-content: space-evenly;
+  }
+
+  .grow {
+    flex-grow: 1;
+  }
+
+  .sticky {
+    position: sticky;
+    top: 0;
+    align-self: flex-start;
+  }
+
+  .sidebar {
+    width: 300px;
+    padding: 1rem;
+    background-color: #f4f4f4;
+  }
+
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  a {
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  }
+
+  a {
+    color: black;
+  }
+
+  a:visited {
+    color: black;
+  }
+
+  a:hover {
+    color: gray;
+  }
+
+  a:active {
+    color: black;
+  }
+}
+
+//Header
+
+header {
+  background-color: white;
+}
+
+.message-to-viewer {
+  z-index: 9;
+  background-color: red;
+  font-weight: 600;
+  padding: 0.2rem;
+  text-align: center;
+  width: 100%;
+  color: white;
+  position: sticky;
+  top: 0;
+}
+
+
+// Navigation 
+nav {
+
+  padding: 1rem;
+  font-size: 1.2rem;
+
+
+  ul {
+    display: flex;
+    justify-content: space-evenly;
+  }
+
+  .active {
+    color: aqua;
+    border-bottom: 2px solid $primary-color;
+  }
+
+  a:hover {
+    color: $primary-color;
+  }
+
+
+}
+
+//Page Containers
+.full-container {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  width: 100%;
+}
+
+//Wide Card
+
+.wide-card {
+  max-width: 800px;
+  overflow: hidden;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  margin: 0.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+
+  .top {
+    width: 800px;
+    flex-grow: 1;
+
+    padding: auto {
+      top: .5rem;
+    }
+
+    .name {
+      font-weight: 600;
+    }
+  }
+
+  .middle {
+    padding: 1rem {
+      top: .5rem;
+      bottom: .5rem;
+    }
+  }
+
+  .bottom {
+    padding: auto {
+      bottom: .5rem;
+    }
+  }
+
+  a {
+    border-bottom: 1px solid $primary-color;
+  }
+
+  a:hover {
+    color: #2196f3;
+  }
+
+  .half {
+    width: 50%;
+    background-color: #f4f4f4;
+  }
+
+  .onefourth {
+    width: 25%;
+    background-color: #f4f4f4;
+    border: 1px solid rgb(195, 195, 195);
+    border-radius: 5px;
+  }
+
+  .threefourth {
+    width: 75%;
+    background-color: #f4f4f4;
+    border-radius: 5px;
+  }
+
+  .fourfourth {
+    padding: .5rem;
+    width: 100%;
+    background-color: #f4f4f4;
+    border-radius: 5px;
+  }
+
+  .external-links {
+    padding: .5rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .external-links a {
+    margin: 0 0.5rem;
+  }
+
+  .external-links div {
+    margin: 0 1rem;
+  }
+
+  .btn-small-white {
+    /* background-color: white;
+	border: 1px solid grey;
+	border-radius: 5px; */
+    background-color: white;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    padding: 0.25rem;
+    margin: 0.25rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    font-size: 0.7rem;
+  }
+
+  button {
+    background-color: white;
+    border: 0;
+    padding: 0.3rem 0.5rem;
+    font-size: 1rem;
+    border-radius: 10px;
+    width: 150px;
+    margin: 0.3rem 0;
+    border: 2px solid $primary-color;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+  }
+
+  button:hover {
+    background-color: $primary-color;
+    color: white;
+    border: 2px solid $primary-color;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  }
+}
+
+//Sidebar
+.sidebar {
+  button {
+    background-color: white;
+    border: 0;
+    padding: 0.3rem 0.5rem;
+    font-size: 1rem;
+    border-radius: 10px;
+    width: 150px;
+    margin: 0.3rem 0;
+    border: 2px solid $primary-color;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+  }
+
+  button:hover {
+    border: 1px solid $primary-color;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  }
+
+  .btn-active {
+    background-color: $primary-color;
+    color: white;
+    border-color: $primary-color;
+  }
+
+  // .btn-always {
+  //   border: 1px solid #2196f3;
+  // }
+}

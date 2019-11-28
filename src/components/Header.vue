@@ -1,8 +1,9 @@
 <template>
 	<header>
 		<div class="spacex-logo">
-			<router-link to="/"><img src="../assets/spacex_logo_small.png" /></router-link>
-			
+			<!-- Disabling Logo Link for Portfolio reasons -->
+			<!-- <router-link to="/"></router-link> -->
+			<img src="../assets/spacex_logo_small.png" />
 		</div>
 		<div class="header-sub-heading">
 			<p>The Unofficial SpaceX Database</p>

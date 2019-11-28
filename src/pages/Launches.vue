@@ -39,7 +39,7 @@
 						>Starship</button>
 					</div>
 					<div class="successful-launch">
-						<p class="sidebar-title">Succesful Launch</p>
+						<p class="sidebar-title">Successful Launch</p>
 						<button
 							v-bind:class="{ 'btn-active': filterSuccess==''}"
 							@mouseup.left="filterLaunchGood($event.target.value)"
@@ -125,7 +125,6 @@ export default {
 				}
 			});
 		},
-
 		filterShip(e) {
 			let rocketId = e;
 			this.filterRocket = e;
@@ -161,10 +160,14 @@ export default {
 } */
 
 .sidebar {
-	font-size: 1.3rem;
+	font-size: 1rem;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+}
+
+.sidebar p {
+	margin: 0.7rem 0 0.2rem 0;
 }
 
 .filter .rocket-used {
@@ -184,6 +187,8 @@ export default {
 }
 
 .category {
+	/* temp margin for red banner */
+	margin-top: 0.5rem;
 }
 
 .sidebar-title {
@@ -219,7 +224,7 @@ button {
 	background-color: white;
 	border: 0;
 	padding: 0.3rem 0.5rem;
-	font-size: 1.3rem;
+	font-size: 1rem;
 	border-radius: 10px;
 	width: 150px;
 	margin: 0.3rem 0;
