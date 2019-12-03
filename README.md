@@ -1,8 +1,12 @@
 <a href="http://spacexdb.com"><img src="http://spacexdb.com/static/img/spacex_logo_small.7f46b5b.png" title="SpaceX Logo" alt="SpaceX Logo"></a>
+# SpaceX Database
+> A Vue.js project to practice retrieving data from an API while building a sleek (SpaceX-ish) UI!
 
-## spacex_api_vue
+**Roadmap**
+- Item
 
-> A Vue.js project
+**Things I learned**
+- Item
 
 ## Build Setup
 
@@ -19,5 +23,3 @@ npm run build
 # build for production and view the bundle analyzer report
 npm run build --report
 ```
-
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
