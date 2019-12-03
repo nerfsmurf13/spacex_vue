@@ -10,12 +10,18 @@
 - Get it all out! Setup routes and get data displayed! (not pretty)
 - Develop Search/Filtering in "Launches" page
 - Complete Formatting for Launches
+- Complete Formatting for Rockets
+- Add loading spinner for Launches
+- IE Compatability
+- Mobile Compatibility (Initially I wasnt thinking Mobile First, bit me in the butt!)
+- Accessibility
+- Launch Pads, Landing Pads, Ships Information
 
 **Things I learned**
 - Local Search Filtering on Vue
 - Filtering on Serverside using QueryStrings
+- Vue Routing for multipage apps
 - 
-- Item
 
 ## Build Setup
 
