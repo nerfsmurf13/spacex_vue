@@ -1,4 +1,4 @@
-<a href="http://spacexdb.com"><img src="http://spacexdb.com/static/img/spacex_logo_small.png" title="SpaceX Logo" alt="SpaceX Logo"></a>
+<a href="http://spacexdb.com"><img src="http://spacexdb.com/static/img/spacex_logo_small.7f46b5b.png" title="SpaceX Logo" alt="SpaceX Logo"></a>
 
 ## spacex_api_vue
 
