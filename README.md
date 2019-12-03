@@ -2,10 +2,19 @@
 # SpaceX Database
 > A Vue.js project to practice retrieving data from an API while building a sleek (SpaceX-ish) UI!
 
+**Goal**
+- Build a full informative website on SpaceX's free API
+- Provide SpaceX's Milestones, launches, Missions, Rockets, Lauching/Landing Pads, Ships and More!
+
 **Roadmap**
-- Item
+- Get it all out! Setup routes and get data displayed! (not pretty)
+- Develop Search/Filtering in "Launches" page
+- Complete Formatting for Launches
 
 **Things I learned**
+- Local Search Filtering on Vue
+- Filtering on Serverside using QueryStrings
+- 
 - Item
 
 ## Build Setup
