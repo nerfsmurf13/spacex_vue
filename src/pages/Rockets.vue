@@ -1,15 +1,18 @@
 <template>
 	<div>
-		<h2>Rockets</h2>
-		<div class="rocket-container">
-			<div v-for="rocket in rockets">
-				<router-link :to="{ path: 'rocket/'+rocket.rocket_id}">
-					<rocket-card
-						:name="rocket.rocket_name"
-						:picture="rocket.flickr_images[0]"
-						:first_flight="rocket.first_flight"
-					/>
-				</router-link>
+		<div v-if="!loaded">LOADING</div>
+		<div v-else>
+			<h2>Rockets</h2>
+			<div class="rocket-container">
+				<div v-for="rocket in rockets" :key="rocket">
+					<router-link :to="{ path: 'rocket/'+rocket.rocket_id}">
+						<rocket-card
+							:name="rocket.rocket_name"
+							:picture="rocket.flickr_images[0]"
+							:first_flight="rocket.first_flight"
+						/>
+					</router-link>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -25,6 +28,7 @@ export default {
 	},
 	data() {
 		return {
+			loaded: false,
 			rockets: []
 		};
 	},
@@ -36,6 +40,7 @@ export default {
 			const baseURI = "https://api.spacexdata.com/v3/rockets";
 			this.$http.get(baseURI).then(result => {
 				this.rockets = result.data;
+				this.loaded = true;
 			});
 		}
 	}

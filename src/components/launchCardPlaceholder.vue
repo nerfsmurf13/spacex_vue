@@ -1,41 +1,46 @@
 <template>
-	<div :class="{'failed-launch':!launchSuccess,'future-launch':launched }" class="launch-card">
+	<div class="launch-card">
 		<div class="content">
-			<p>
-				{{ flightNumber }}:
-				<span class="name">{{ missionName }}</span>
-			</p>
-			<p>{{ launchYear }}</p>
+			<span class="name">Loading{{dots}}</span>
 		</div>
 	</div>
 </template>
 <script>
 export default {
-	name: "LaunchCard",
+	name: "LaunchCardPlaceholder",
 	props: {
-		flightNumber: {
-			type: Number,
-			default: null
-		},
-		launchDate: {
+		loadingWhat: {
 			type: String,
 			default: ""
-		},
-		launchYear: {
-			type: String,
-			default: ""
-		},
-		missionName: {
-			type: String,
-			default: ""
-		},
-		launchSuccess: {
-			type: Boolean,
-			default: true
-		},
-		launched: {
-			type: Boolean,
-			default: false
+		}
+		// zeroResults: {
+		// 	type: Number,
+		// 	default: 0
+		// }
+	},
+	data() {
+		return {
+			dotCounter: 0,
+			dots: "",
+			zeroResults: 0
+		};
+	},
+	mounted: function() {
+		this.dotCycler();
+	},
+	methods: {
+		dotCycler() {
+			if (this.dotCounter < 4) {
+				this.dotCounter++;
+
+				this.dots += ".";
+
+				setTimeout(this.dotCycler, 1000);
+			} else {
+				setTimeout(this.dotCycler, 1000);
+				this.dots = "";
+				this.dotCounter = 0;
+			}
 		}
 	}
 };
@@ -56,10 +61,6 @@ export default {
 	margin: 0.5rem;
 	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 	transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-}
-
-.launch-card:hover {
-	box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 }
 
 .name {

@@ -1,73 +1,83 @@
 <template>
-	<div>
-		<div class="row">
-			<div class="sidebar sticky">
-				<div class="category">
-					<h2>Launches</h2>
-				</div>
-				<form v-on:submit="fetchLaunches" class="search-bar">
-					<input v-on:keyup="fetchLaunches" v-model="search" type="text" placeholder="Search" />
-				</form>
-				<div class="filter">
-					<!-- <p>Date Range</p> -->
-					<div class="rocket-used">
-						<p class="sidebar-title">Rocket Used</p>
-						<button
-							v-bind:class="{ 'btn-active': filterRocket==''}"
-							@mouseup.left="filterShip($event.target.value)"
-							value
-						>All</button>
-						<button
-							v-bind:class="{ 'btn-active': filterRocket=='falcon1'}"
-							@mouseup.left="filterShip($event.target.value)"
-							value="falcon1"
-						>Falcon 1</button>
-						<button
-							v-bind:class="{ 'btn-active': filterRocket=='falcon9'}"
-							@mouseup.left="filterShip($event.target.value)"
-							value="falcon9"
-						>Falcon 9</button>
-						<button
-							v-bind:class="{ 'btn-active': filterRocket=='falconheavy'}"
-							@mouseup.left="filterShip($event.target.value)"
-							value="falconheavy"
-						>Falcon Heavy</button>
-						<button
-							v-bind:class="{ 'btn-active': filterRocket=='starship'}"
-							@mouseup.left="filterShip($event.target.value)"
-							value="starship"
-						>Starship</button>
-					</div>
-					<div class="successful-launch">
-						<p class="sidebar-title">Successful Launch</p>
-						<button
-							v-bind:class="{ 'btn-active': filterSuccess==''}"
-							@mouseup.left="filterLaunchGood($event.target.value)"
-							value
-						>All</button>
-						<button
-							v-bind:class="{ 'btn-active': filterSuccess=='true'}"
-							@mouseup.left="filterLaunchGood($event.target.value)"
-							value="true"
-						>Yes</button>
-						<button
-							v-bind:class="{ 'btn-active': filterSuccess=='false'}"
-							@mouseup.left="filterLaunchGood($event.target.value)"
-							value="false"
-						>No</button>
-					</div>
-					<p>Total: {{launches.length}}</p>
+	<div class="row">
+		<div class="sidebar sticky">
+			<div class="category">
+				<h2>Launches</h2>
+			</div>
+			<form v-on:submit="fetchLaunches" class="search-bar">
+				<input v-on:keyup="fetchLaunches" v-model="search" type="text" placeholder="Search" />
+			</form>
+			<div class="filter">
+				<!-- <p>Date Range</p> -->
+				<div class="rocket-used">
+					<p class="sidebar-title">Rocket Used</p>
 					<button
-						@mouseup.left="filterShip($event.target.value);filterLaunchGood($event.target.value)"
-						class="btn-always"
+						v-bind:class="{ 'btn-active': filterRocket==''}"
+						@mouseup.left="filterShip($event.target.value)"
 						value
-					>Clear Filter</button>
+					>All</button>
+					<button
+						v-bind:class="{ 'btn-active': filterRocket=='falcon1'}"
+						@mouseup.left="filterShip($event.target.value)"
+						value="falcon1"
+					>Falcon 1</button>
+					<button
+						v-bind:class="{ 'btn-active': filterRocket=='falcon9'}"
+						@mouseup.left="filterShip($event.target.value)"
+						value="falcon9"
+					>Falcon 9</button>
+					<button
+						v-bind:class="{ 'btn-active': filterRocket=='falconheavy'}"
+						@mouseup.left="filterShip($event.target.value)"
+						value="falconheavy"
+					>Falcon Heavy</button>
+					<button
+						v-bind:class="{ 'btn-active': filterRocket=='starship'}"
+						@mouseup.left="filterShip($event.target.value)"
+						value="starship"
+					>Starship</button>
+				</div>
+				<div class="successful-launch">
+					<p class="sidebar-title">Successful Launch</p>
+					<button
+						v-bind:class="{ 'btn-active': filterSuccess==''}"
+						@mouseup.left="filterLaunchGood($event.target.value)"
+						value
+					>All</button>
+					<button
+						v-bind:class="{ 'btn-active': filterSuccess=='true'}"
+						@mouseup.left="filterLaunchGood($event.target.value)"
+						value="true"
+					>Yes</button>
+					<button
+						v-bind:class="{ 'btn-active': filterSuccess=='false'}"
+						@mouseup.left="filterLaunchGood($event.target.value)"
+						value="false"
+					>No</button>
+				</div>
+				<p>Total: {{launches.length}}</p>
+				<button
+					@mouseup.left="filterShip($event.target.value);filterLaunchGood($event.target.value)"
+					class="btn-always"
+					value
+				>Clear Filter</button>
+			</div>
+		</div>
+
+		<div class="parent-container">
+			<!-- LOADER -->
+			<div v-if="!loaded" class="launch-container">
+				<div class="center" v-for="i in 1" :key="i">
+					<launch-card-placeholder :loadingWhat="'Launches'" />
 				</div>
 			</div>
 
-			<div class="launch-container">
-				<!-- FILTER SIDEBAR NEEDED -->
-				<div v-for="(launch,index) in launches" :key="index" :launches="launches">
+			<div v-else class="launch-container">
+				<div class="center">
+					<no-results v-if="launches.length==0" />
+				</div>
+
+				<div class="center" v-for="(launch,index) in launches" :key="index" :launches="launches">
 					<router-link :to="{ path: 'launch/'+launch.flight_number}">
 						<launch-card
 							:missionName="launch.mission_name"
@@ -86,14 +96,20 @@
 
 <script>
 import LaunchCard from "../components/LaunchCard";
+import LaunchCardPlaceholder from "../components/LaunchCardPlaceholder";
+import NoResults from "../components/NoResults";
 
 export default {
 	name: "Launches",
 	components: {
-		LaunchCard
+		LaunchCard,
+		LaunchCardPlaceholder,
+		NoResults
 	},
 	data() {
 		return {
+			loaded: false,
+			placeHolder: "Loading...",
 			launches: [],
 			filterRocket: "",
 			filterSuccess: "",
@@ -113,6 +129,7 @@ export default {
 			let baseURI = this.url + "?" + this.qRocket + this.qLaunchGood;
 			this.$http.get(baseURI).then(result => {
 				this.launches = result.data;
+				this.loaded = true;
 				let filteredDataBySearch = [];
 				if (this.search !== "") {
 					filteredDataBySearch = this.launches.filter(
@@ -121,11 +138,13 @@ export default {
 								.toLowerCase()
 								.indexOf(this.search.toLowerCase()) >= 0
 					);
+					this.loaded = true;
 					this.launches = filteredDataBySearch;
 				}
 			});
 		},
 		filterShip(e) {
+			this.loaded = false;
 			let rocketId = e;
 			this.filterRocket = e;
 			if (!this.filterRocket === rocketId) {
@@ -139,6 +158,7 @@ export default {
 		},
 		filterLaunchGood(e) {
 			let launchSuccess = e;
+			this.loaded = false;
 			this.filterSuccess = e;
 			if (!this.filterSuccess === launchSuccess) {
 				this.filterSuccess = launchSuccess;
@@ -154,92 +174,8 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style src="../styles/style.css" >
 /* * {
 	text-align: center;
 } */
-
-.sidebar {
-	font-size: 1rem;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-}
-
-.sidebar p {
-	margin: 0.7rem 0 0.2rem 0;
-}
-
-.filter .rocket-used {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-}
-.filter .successful-launch {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-}
-.filter {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-}
-
-.category {
-	/* temp margin for red banner */
-	margin-top: 0.5rem;
-}
-
-.sidebar-title {
-	font-weight: 600;
-}
-
-.search-bar {
-}
-
-.radio-input {
-}
-
-.rocket-used {
-}
-
-.launch-container {
-	display: flex;
-	flex-flow: row wrap;
-	justify-content: space-around;
-	width: 100%;
-}
-
-.search-bar input[type="text"] {
-	font-size: 1.3rem;
-	width: 150px;
-	border: 0;
-	border-radius: 10px;
-	text-align: center;
-	border: 2px solid #d1d1d1;
-}
-
-button {
-	background-color: white;
-	border: 0;
-	padding: 0.3rem 0.5rem;
-	font-size: 1rem;
-	border-radius: 10px;
-	width: 150px;
-	margin: 0.3rem 0;
-	border: 2px solid white;
-	transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
-}
-button:hover {
-	border: 2px solid #2196f3;
-	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-}
-.btn-active {
-	background-color: #2196f3;
-	color: white;
-}
-.btn-always {
-	border: 2px solid #2196f3;
-}
 </style>

@@ -10,7 +10,6 @@
 }
 
 * .row {
-  width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -18,10 +17,18 @@
   -webkit-box-direction: normal;
       -ms-flex-flow: row;
           flex-flow: row;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: start;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
 }
 
 * .column {
-  width: 100%;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -72,14 +79,6 @@
   position: -webkit-sticky;
   position: sticky;
   top: 0;
-  -ms-flex-item-align: start;
-      align-self: flex-start;
-}
-
-* .sidebar {
-  width: 300px;
-  padding: 1rem;
-  background-color: #f4f4f4;
 }
 
 * ul {
@@ -144,6 +143,8 @@ nav ul {
   -webkit-box-pack: space-evenly;
       -ms-flex-pack: space-evenly;
           justify-content: space-evenly;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
 }
 
 nav .active {
@@ -335,6 +336,50 @@ nav a:hover {
   background-color: #f4f4f4;
 }
 
+.parent-container,
+.launch-container {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+
+.loading {
+  opacity: 0.25;
+}
+
+.center {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.sidebar {
+  width: 200px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
 .sidebar button {
   background-color: white;
   border: 0;
@@ -360,5 +405,99 @@ nav a:hover {
   background-color: #2196f3;
   color: white;
   border-color: #2196f3;
+}
+
+.sidebar p {
+  margin: 0.7rem 0 0.2rem 0;
+}
+
+.sidebar .filter .rocket-used {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.sidebar .filter .successful-launch {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.sidebar .filter {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.sidebar .category {
+  /* temp margin for red banner */
+  margin-top: 0.5rem;
+  text-align: center;
+}
+
+.sidebar .sidebar-title {
+  font-weight: 600;
+}
+
+.sidebar .search-bar input[type="text"] {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 0 auto;
+  font-size: 1.3rem;
+  width: 150px;
+  border: 0;
+  border-radius: 10px;
+  text-align: center;
+  border: 2px solid #d1d1d1;
+}
+
+.sidebar button {
+  background-color: white;
+  border: 0;
+  padding: 0.3rem 0.5rem;
+  font-size: 1rem;
+  border-radius: 10px;
+  width: 150px;
+  margin: 0.3rem 0;
+  border: 2px solid white;
+  -webkit-transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+  transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.sidebar button:hover {
+  border: 2px solid #2196f3;
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+.sidebar .btn-active {
+  background-color: #2196f3;
+  color: white;
+}
+
+.sidebar .btn-always {
+  border: 2px solid #2196f3;
 }
 /*# sourceMappingURL=style.css.map */
