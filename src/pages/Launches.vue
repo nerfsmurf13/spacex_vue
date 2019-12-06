@@ -1,7 +1,8 @@
 <template>
 	<div class="row">
-		<div class="sidebar sticky">
-			<div class="category">
+		<div class="sidebar">
+			<div class="sidebar-section sticky">
+<div class="category">
 				<h2>Launches</h2>
 			</div>
 			<form v-on:submit="fetchLaunches" class="search-bar">
@@ -62,6 +63,9 @@
 					value
 				>Clear Filter</button>
 			</div>
+
+			</div>
+			
 		</div>
 
 		<div class="parent-container">

@@ -474,6 +474,10 @@ nav a:hover {
           align-items: center;
 }
 
+.sidebar .sidebar-section {
+  padding-top: 1rem;
+}
+
 .sidebar button {
   background-color: white;
   border: 0;
