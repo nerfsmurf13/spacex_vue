@@ -1,8 +1,8 @@
 <template>
 	<div>
 		<div class="row">
-			<div class="full-container">
-				<div v-for="(mission,index) in missions" :key="index" :missions="missions">
+			<div class="parent-container sub-col center-flex">
+				<div  class="max-800 " v-for="(mission,index) in missions" :key="index" :missions="missions">
 					<!-- <router-link :to="{ path: 'history/'+historyItem.id}"> -->
 					<mission-card
 						:missionName="mission.mission_name"

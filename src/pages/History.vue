@@ -1,12 +1,12 @@
 <template>
-	<div>
+	
 		<div class="row">
-			<div class="full-container">
-				<div v-for="(historyItem,index) in history" :key="index" :history="history">
+			<div class="parent-container sub-col center-flex">
+				<div class="max-800 " v-for="(historyItem,index) in history" :key="index" :history="history">
 					<!-- <router-link :to="{ path: 'history/'+historyItem.id}"> -->
 					<history-card
 						:articleName="historyItem.title"
-						:articleDate="historyItem.event_date_utc"
+						:articleDate="historyItem.event_date_unix"
 						:flightNumber="historyItem.flight_number"
 						:articleDetails="historyItem.details"
 						:redditLink="historyItem.links.reddit"
@@ -17,7 +17,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	
 </template>
 
 <script>

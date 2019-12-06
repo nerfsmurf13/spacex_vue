@@ -71,7 +71,7 @@
 					<launch-card-placeholder :loadingWhat="'Launches'" />
 				</div>
 			</div>
-
+			<!-- CONTENT -->
 			<div v-else class="launch-container">
 				<div class="center">
 					<no-results v-if="launches.length==0" />

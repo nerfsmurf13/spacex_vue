@@ -31,5 +31,6 @@ header .spacex-logo,
 }
 img {
 	height: 30px;
+	margin:1rem;
 }
 </style>

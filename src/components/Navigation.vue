@@ -13,8 +13,7 @@
 			<li @click="currentPage" :class="{ 'active': page==('/rockets')}">
 				<router-link @click="currentPage" to="/rockets">Rockets</router-link>
 			</li>
-		</ul>
-		<ul>
+		
 			<li @click="currentPage" :class="{ 'active': page==('/launch-pads')}">
 				<router-link @click="currentPage" to="/launch-pads">Launch Pads</router-link>
 			</li>

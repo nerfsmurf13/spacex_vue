@@ -5,7 +5,7 @@
 		</div>
 		<div class="middle">
 			<span v-if="flightNumber!=null">Launch {{ flightNumber }} |</span>
-			{{ articleDate }}
+			{{ timeConvert(articleDate) }}
 			<div v-if="!readMore">
 				{{ missionDetailsShort }}
 				<a v-if="long" v-on:click="readMore=true">Read More</a>
@@ -44,9 +44,8 @@ export default {
 			default: null
 		},
 		articleDate: {
-			type: String,
-			default: ""
-		},
+			type: Number,
+			default: 0		},
 		flightNumber: {
 			type: Number,
 			default: 0
@@ -91,6 +90,30 @@ export default {
 				}
 				this.missionDetailsShort += "...";
 			}
+		},
+		timeConvert(a){
+			// Unixtimestamp
+			let unixtimestamp = a;
+			// Months array
+			let months_arr = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+			// Convert timestamp to milliseconds
+			let date = new Date(unixtimestamp*1000);
+			// Year
+			let year = date.getFullYear();
+			// Month
+			let month = months_arr[date.getMonth()];
+			// Day
+			let day = date.getDate();
+			// Hours
+			let hours = date.getHours();
+			// Minutes
+			let minutes = "0" + date.getMinutes();
+			// Seconds
+			let seconds = "0" + date.getSeconds();
+			// Display date time in MM-dd-yyyy h:m:s format
+			// let convdataTime = month+'-'+day+'-'+year+' '+hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
+			let convdataTime = month+' '+day+', '+year;
+			return convdataTime;
 		}
 	}
 };

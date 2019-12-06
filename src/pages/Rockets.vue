@@ -1,19 +1,26 @@
 <template>
-	<div>
-		<div v-if="!loaded">LOADING</div>
-		<div v-else>
-			<h2>Rockets</h2>
-			<div class="rocket-container">
-				<div v-for="rocket in rockets" :key="rocket">
-					<router-link :to="{ path: 'rocket/'+rocket.rocket_id}">
-						<rocket-card
-							:name="rocket.rocket_name"
-							:picture="rocket.flickr_images[0]"
-							:first_flight="rocket.first_flight"
-						/>
-					</router-link>
-				</div>
+	<div class="row">
+		<div class="parent-container">
+      <div class="sub-col">
+        <h2 class="center">Rockets</h2>
+			<div v-if="!loaded">LOADING</div>
+			<div v-else class="rocket-container">
+				
+				
+          
+					<div v-for="rocket in rockets" :key="rocket">
+						<router-link :to="{ path: 'rocket/'+rocket.rocket_id}">
+							<rocket-card
+								:name="rocket.rocket_name"
+								:picture="rocket.flickr_images[0]"
+								:first_flight="rocket.first_flight"
+							/>
+						</router-link>
+					</div>
+				
 			</div>
+      </div>
+      
 		</div>
 	</div>
 </template>
@@ -48,14 +55,6 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-* {
-	text-align: center;
-}
-.rocket-container {
-	display: flex;
-	flex-flow: row wrap;
-	justify-content: space-evenly;
-	width: 100%;
-}
+<style src="../styles/style.css">
+
 </style>
