@@ -10,11 +10,8 @@ export default {
 	name: "NoResults"
 };
 </script>
-<style lang="scss" scoped>
-
-
+<style scoped>
 .name {
 	font-weight: 600;
 }
-
 </style>
