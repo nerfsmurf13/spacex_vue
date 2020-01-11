@@ -1,63 +1,78 @@
 <template>
 	<div class="full-container">
 		<div class="wide-card rocket">
-			<h2>{{ rocketData.rocket_name }} ({{ $route.params.id }}) Page Not Completed!</h2>
+			<h2>
+				{{ rocketData.rocket_name }}
+			</h2>
 			<div class="column">
 				<div class="left">
 					<img :src="rocketData.flickr_images[0]" alt />
 					<!-- <Slider :imageArray="rocketData.flickr_images" /> -->
 				</div>
 				<div class="right">
-					<ul>
-						<p>Details</p>
-						<div class="desc">{{ rocketData.description }}</div>
+					<div class="desc">{{ rocketData.description }}</div>
+					<div class="table-data">
 						<table>
 							<tr>
 								<td>Active</td>
-								<td>{{rocketData.active}}</td>
+								<td v-if="rocketData.active">Yes</td>
+								<td v-else="">No</td>
 							</tr>
 							<tr>
 								<td>Stages</td>
-								<td>{{rocketData.stages}}</td>
+								<td>{{ rocketData.stages }}</td>
 							</tr>
 							<tr>
 								<td>Boosters</td>
-								<td>{{rocketData.boosters}}</td>
+								<td>{{ rocketData.boosters }}</td>
 							</tr>
 							<tr>
 								<td>Launch Cost</td>
-								<td>{{rocketData.cost_per_launch}}</td>
+								<td>$ {{ formatPrice(rocketData.cost_per_launch) }}</td>
 							</tr>
 							<tr>
-								<td>Success Rate %</td>
-								<td>{{rocketData.success_rate_pct}}</td>
+								<td>Success %</td>
+								<td>{{ rocketData.success_rate_pct }}</td>
 							</tr>
 							<tr>
 								<td>First Flight</td>
-								<td>{{rocketData.first_flight}}</td>
+								<td>{{ rocketData.first_flight }}</td>
 							</tr>
 							<tr>
 								<td>Country</td>
-								<td>{{rocketData.country}}</td>
+								<td>{{ rocketData.country }}</td>
 							</tr>
 							<tr>
 								<td>Company</td>
-								<td>{{rocketData.company}}</td>
+								<td>{{ rocketData.company }}</td>
 							</tr>
 							<tr>
 								<td>Height</td>
-								<td>{{rocketData.height.meters}} m ({{rocketData.height.feet}} ft)</td>
+								<td>
+									{{ rocketData.height.meters }} m ({{ rocketData.height.feet }}
+									ft)
+								</td>
 							</tr>
 							<tr>
 								<td>Diameter</td>
-								<td>{{rocketData.diameter.meters}} m ({{rocketData.diameter.feet}} ft)</td>
+								<td>
+									{{ rocketData.diameter.meters }} m ({{
+										rocketData.diameter.feet
+									}}
+									ft)
+								</td>
 							</tr>
 							<tr>
-								<td>Height</td>
-								<td>{{rocketData.mass.kg}} kgs ({{rocketData.mass.lb}} lbs)</td>
+								<td>Mass</td>
+								<td>
+									{{ formatNumber(rocketData.mass.kg) }} kgs ({{
+										formatNumber(rocketData.mass.lb)
+									}}
+									lbs)
+								</td>
 							</tr>
 						</table>
-					</ul>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -89,10 +104,21 @@ export default {
 			this.$http.get(baseURI).then(result => {
 				this.rocketData = result.data;
 			});
+		},
+		formatPrice(value) {
+			//Formats number into Dollar amounts
+			let val = (value / 1).toFixed(2).replace(",", ".");
+			return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+		},
+		formatNumber(value) {
+			return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 		}
 	}
 };
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style src="../styles/style.css"></style>
+<style src="../styles/style.css">
+.table-data {
+}
+</style>
 

@@ -4,9 +4,9 @@
 			<app-header />
 			<app-navigation></app-navigation>
 		</header>
-		<div
+		<!-- <div
 			class="message-to-viewer"
-		>I started this project in mid November 2019 and although not complete, I am still using this as a portfolio item! Pardon the construction!</div>
+		>I started this project in mid November 2019 and although not complete, I am still using this as a portfolio item! Pardon the construction!</div> -->
 		<div class="container">
 			<router-view />
 		</div>

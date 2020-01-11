@@ -1,3 +1,15 @@
+*,
+*::before,
+*::after {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+html {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
 * {
   padding: 0;
   margin: 0;
@@ -167,6 +179,10 @@ nav a:hover {
           justify-content: center;
 }
 
+.full-container {
+  width: 600px;
+}
+
 .wide-card {
   -webkit-box-flex: 1;
       -ms-flex: 1;
@@ -317,16 +333,20 @@ nav a:hover {
           box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 }
 
+.rocket h2 {
+  font-size: 2rem;
+}
+
 .rocket img {
   width: 100%;
 }
 
 .rocket tr:nth-child(odd) {
-  background-color: #f4f4f4;
+  background-color: #dbdbdb;
 }
 
 .launch-card {
-  width: 200px;
+  width: 150px;
   min-height: 73px;
   overflow: hidden;
   background-color: white;
@@ -430,6 +450,7 @@ nav a:hover {
   -webkit-box-flex: 1;
       -ms-flex: 1;
           flex: 1;
+  padding-top: 1rem;
 }
 
 .max-800 {
@@ -597,5 +618,25 @@ nav a:hover {
 
 .sidebar .btn-always {
   border: 2px solid #2196f3;
+}
+
+table {
+  padding: 0 2rem 2rem 2rem;
+  table-layout: auto;
+  width: 100%;
+}
+
+.desc {
+  padding: 0 2rem;
+  margin: 2rem 0;
+}
+
+@media screen and (min-width: 768px) {
+  .full-container {
+    width: 768px;
+  }
+  .launch-card {
+    width: 200px;
+  }
 }
 /*# sourceMappingURL=style.css.map */

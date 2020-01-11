@@ -1,20 +1,20 @@
 <template>
 	<nav class="navbar">
 		<ul>
-			<li @click="currentPage" :class="{ 'active': page==('/history')}">
+			<li @click="currentPage" :class="{ active: page == '/history' }">
 				<router-link to="/history">History</router-link>
 			</li>
-			<li @click="currentPage" :class="{ 'active': page==('/launches')}">
+			<li @click="currentPage" :class="{ active: page == '/launches' }">
 				<router-link @click="currentPage" to="/launches">Launches</router-link>
 			</li>
-			<li @click="currentPage" :class="{ 'active': page==('/missions')}">
+			<li @click="currentPage" :class="{ active: page == '/missions' }">
 				<router-link @click="currentPage" to="/missions">Missions</router-link>
 			</li>
-			<li @click="currentPage" :class="{ 'active': page==('/rockets')}">
+			<li @click="currentPage" :class="{ active: page == '/rockets' }">
 				<router-link @click="currentPage" to="/rockets">Rockets</router-link>
 			</li>
-		
-			<li @click="currentPage" :class="{ 'active': page==('/launch-pads')}">
+
+			<!-- <li @click="currentPage" :class="{ 'active': page==('/launch-pads')}">
 				<router-link @click="currentPage" to="/launch-pads">Launch Pads</router-link>
 			</li>
 			<li @click="currentPage" :class="{ 'active': page==('/landing-pads')}">
@@ -22,7 +22,7 @@
 			</li>
 			<li @click="currentPage" :class="{ 'active': page==('/ships')}">
 				<router-link @click="currentPage" to="/ships">Ships</router-link>
-			</li>
+			</li> -->
 		</ul>
 	</nav>
 </template>
