@@ -1,23 +1,26 @@
 <template>
-	
-		<div class="row">
-			<div class="parent-container sub-col center-flex">
-				<div class="max-800 " v-for="(historyItem,index) in history" :key="index" :history="history">
-					<!-- <router-link :to="{ path: 'history/'+historyItem.id}"> -->
-					<history-card
-						:articleName="historyItem.title"
-						:articleDate="historyItem.event_date_unix"
-						:flightNumber="historyItem.flight_number"
-						:articleDetails="historyItem.details"
-						:redditLink="historyItem.links.reddit"
-						:newsLink="historyItem.links.article"
-						:wikiLink="historyItem.links.wikipedia"
-					/>
-					<!-- </router-link> -->
-				</div>
+	<div class="row">
+		<div class="parent-container sub-col center-flex">
+			<div
+				class="max-800"
+				v-for="(historyItem, index) in history"
+				:key="index"
+				:history="history"
+			>
+				<!-- <router-link :to="{ path: 'history/'+historyItem.id}"> -->
+				<history-card
+					:articleName="historyItem.title"
+					:articleDate="historyItem.event_date_unix"
+					:flightNumber="historyItem.flight_number"
+					:articleDetails="historyItem.details"
+					:redditLink="historyItem.links.reddit"
+					:newsLink="historyItem.links.article"
+					:wikiLink="historyItem.links.wikipedia"
+				/>
+				<!-- </router-link> -->
 			</div>
 		</div>
-	
+	</div>
 </template>
 
 <script>
@@ -26,7 +29,7 @@ import HistoryCard from "../components/HistoryCard";
 export default {
 	name: "History",
 	components: {
-		HistoryCard
+		HistoryCard,
 	},
 	data() {
 		return {
@@ -36,23 +39,23 @@ export default {
 			qRocket: "",
 			qLaunchGood: "",
 			search: "",
-			url: "https://api.spacexdata.com/v3/history"
+			url: "https://api.spacexdata.com/v4/history",
 		};
 	},
 
-	mounted: function() {
+	mounted: function () {
 		this.fetchHistory();
 	},
 
 	methods: {
 		fetchHistory() {
 			let baseURI = this.url + "?" + this.qRocket + this.qLaunchGood;
-			this.$http.get(baseURI).then(result => {
+			this.$http.get(baseURI).then((result) => {
 				this.history = result.data;
 				let filteredDataBySearch = [];
 				if (this.search !== "") {
 					filteredDataBySearch = this.history.filter(
-						obj =>
+						(obj) =>
 							obj.title.toLowerCase().indexOf(this.search.toLowerCase()) >= 0
 					);
 					this.history = filteredDataBySearch;
@@ -82,8 +85,8 @@ export default {
 		successQueryStringer() {
 			this.qLaunchGood = "launch_success=" + this.filterSuccess + "&";
 			this.fetchLaunches();
-		}
-	}
+		},
+	},
 };
 </script>
 <style src="../styles/style.css"></style>

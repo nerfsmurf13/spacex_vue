@@ -4,30 +4,30 @@
 			<span class="name">{{ articleName }}</span>
 		</div>
 		<div class="middle">
-			<span v-if="flightNumber!=null">Launch {{ flightNumber }} |</span>
+			<span v-if="flightNumber != null">Launch {{ flightNumber }} |</span>
 			{{ timeConvert(articleDate) }}
 			<div v-if="!readMore">
 				{{ missionDetailsShort }}
-				<a v-if="long" v-on:click="readMore=true">Read More</a>
+				<a v-if="long" v-on:click="readMore = true">Read More</a>
 			</div>
 			<div v-if="readMore">
 				{{ articleDetails }}
-				<a v-if="long" v-on:click="readMore=false">Read Less</a>
+				<a v-if="long" v-on:click="readMore = false">Read Less</a>
 			</div>
 		</div>
 
 		<div class="external-links bottom">
-			<div v-if="redditLink!=null">
+			<div v-if="redditLink">
 				<a :href="redditLink">
 					<button>Reddit Article</button>
 				</a>
 			</div>
-			<div v-if="newsLink!=null">
+			<div v-if="newsLink">
 				<a :href="newsLink">
 					<button>News Article</button>
 				</a>
 			</div>
-			<div v-if="wikiLink!=null">
+			<div v-if="wikiLink">
 				<a :href="wikiLink">
 					<button>Wiki Article</button>
 				</a>
@@ -41,31 +41,32 @@ export default {
 	props: {
 		articleName: {
 			type: String,
-			default: null
+			default: null,
 		},
 		articleDate: {
 			type: Number,
-			default: 0		},
+			default: 0,
+		},
 		flightNumber: {
 			type: Number,
-			default: 0
+			default: 0,
 		},
 		articleDetails: {
 			type: String,
-			default: ""
+			default: "",
 		},
 		redditLink: {
 			type: String,
-			default: ""
+			default: "",
 		},
 		newsLink: {
 			type: String,
-			default: ""
+			default: "",
 		},
 		wikiLink: {
 			type: String,
-			default: ""
-		}
+			default: "",
+		},
 	},
 	data() {
 		return {
@@ -73,10 +74,10 @@ export default {
 			missionDetailsShort: "",
 			words: [],
 			readMore: true,
-			long: false
+			long: false,
 		};
 	},
-	mounted: function() {
+	mounted: function () {
 		this.buildShortDetails();
 	},
 	methods: {
@@ -91,13 +92,26 @@ export default {
 				this.missionDetailsShort += "...";
 			}
 		},
-		timeConvert(a){
+		timeConvert(a) {
 			// Unixtimestamp
 			let unixtimestamp = a;
 			// Months array
-			let months_arr = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+			let months_arr = [
+				"Jan",
+				"Feb",
+				"Mar",
+				"Apr",
+				"May",
+				"Jun",
+				"Jul",
+				"Aug",
+				"Sep",
+				"Oct",
+				"Nov",
+				"Dec",
+			];
 			// Convert timestamp to milliseconds
-			let date = new Date(unixtimestamp*1000);
+			let date = new Date(unixtimestamp * 1000);
 			// Year
 			let year = date.getFullYear();
 			// Month
@@ -112,10 +126,10 @@ export default {
 			let seconds = "0" + date.getSeconds();
 			// Display date time in MM-dd-yyyy h:m:s format
 			// let convdataTime = month+'-'+day+'-'+year+' '+hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
-			let convdataTime = month+' '+day+', '+year;
+			let convdataTime = month + " " + day + ", " + year;
 			return convdataTime;
-		}
-	}
+		},
+	},
 };
 </script>
 <style src="../styles/style.css"></style>

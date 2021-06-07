@@ -2,7 +2,12 @@
 	<div>
 		<div class="row">
 			<div class="parent-container sub-col center-flex">
-				<div  class="max-800 " v-for="(mission,index) in missions" :key="index" :missions="missions">
+				<div
+					class="max-800"
+					v-for="(mission, index) in missions"
+					:key="index"
+					:missions="missions"
+				>
 					<!-- <router-link :to="{ path: 'history/'+historyItem.id}"> -->
 					<mission-card
 						:missionName="mission.mission_name"
@@ -26,7 +31,7 @@ import MissionCard from "../components/MissionCard";
 export default {
 	name: "Missions",
 	components: {
-		MissionCard
+		MissionCard,
 	},
 	data() {
 		return {
@@ -36,23 +41,23 @@ export default {
 			qRocket: "",
 			qLaunchGood: "",
 			search: "",
-			url: "https://api.spacexdata.com/v3/missions"
+			url: "https://api.spacexdata.com/v3/missions",
 		};
 	},
 
-	mounted: function() {
+	mounted: function () {
 		this.fetchMissions();
 	},
 
 	methods: {
 		fetchMissions() {
 			let baseURI = this.url + "?" + this.qRocket + this.qLaunchGood;
-			this.$http.get(baseURI).then(result => {
+			this.$http.get(baseURI).then((result) => {
 				this.missions = result.data;
 				let filteredDataBySearch = [];
 				if (this.search !== "") {
 					filteredDataBySearch = this.missions.filter(
-						obj =>
+						(obj) =>
 							obj.title.toLowerCase().indexOf(this.search.toLowerCase()) >= 0
 					);
 					this.missions = filteredDataBySearch;
@@ -82,8 +87,8 @@ export default {
 		successQueryStringer() {
 			this.qLaunchGood = "launch_success=" + this.filterSuccess + "&";
 			this.fetchLaunches();
-		}
-	}
+		},
+	},
 };
 </script>
 <style src="../styles/style.css"></style>

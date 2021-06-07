@@ -113,10 +113,10 @@
 				>
 					<router-link :to="{ path: 'launch/' + launch.flight_number }">
 						<launch-card
-							:missionName="launch.mission_name"
+							:missionName="launch.name"
 							:flightNumber="launch.flight_number"
-							:launchYear="launch.launch_year"
-							:launchSuccess="launch.launch_success"
+							:launchDate="launch.date_unix"
+							:launchSuccess="launch.success"
 							:launched="launch.upcoming"
 							:launchId="launch.flight_number"
 						/>
@@ -137,7 +137,7 @@ export default {
 	components: {
 		LaunchCard,
 		LaunchCardPlaceholder,
-		NoResults
+		NoResults,
 	},
 	data() {
 		return {
@@ -149,30 +149,32 @@ export default {
 			qRocket: "",
 			qLaunchGood: "",
 			search: "",
-			url: "https://api.spacexdata.com/v3/launches"
+			url: "https://api.spacexdata.com/v4/launches",
 		};
 	},
 
-	mounted: function() {
+	mounted: function () {
 		this.fetchLaunches();
 	},
 
 	methods: {
 		fetchLaunches() {
 			let baseURI = this.url + "?" + this.qRocket + this.qLaunchGood;
-			this.$http.get(baseURI).then(result => {
+			this.$http.get(baseURI).then((result) => {
 				this.launches = result.data;
 				this.loaded = true;
 				let filteredDataBySearch = [];
 				if (this.search !== "") {
 					filteredDataBySearch = this.launches.filter(
-						obj =>
+						(obj) =>
 							obj.mission_name
 								.toLowerCase()
 								.indexOf(this.search.toLowerCase()) >= 0
 					);
 					this.loaded = true;
-					this.launches = filteredDataBySearch;
+					this.launches = filteredDataBySearch.sort(
+						(a, b) => a.date_unix - b.date_unix
+					);
 				}
 			});
 		},
@@ -201,8 +203,8 @@ export default {
 		successQueryStringer() {
 			this.qLaunchGood = "launch_success=" + this.filterSuccess + "&";
 			this.fetchLaunches();
-		}
-	}
+		},
+	},
 };
 </script>
 
